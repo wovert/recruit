@@ -56,6 +56,8 @@ node_modules 第三方模块
 - 自定义配置webpack
 `npm run eject` 弹出配置文件
 
+- 如果提示出错：请 `git commit` 之后没有提示出错
+
 - 扩展 package.json 里的 script字段，扩展 npm run 命令
 
 - 注册码云账号(https://git.oschina.net/)
@@ -66,3 +68,8 @@ node_modules 第三方模块
 
 ## 如何定制化配置
 
+# Express + MongoDB
+- Express + MongoDB 开发 Web 后台接口
+
+## Express
+- cnpm i express --save
