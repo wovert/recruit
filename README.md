@@ -32,6 +32,9 @@ https://github.com/facebook/create-react-app
 - 全局安装
 `# cnpm i -g create-react-app`
 
+- 查看安装版本
+`# create-react-app -v`
+
 - 新建 react 应用
 `# create-react-app lingyima`
 
