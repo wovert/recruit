@@ -33,7 +33,7 @@
 1. 全局安装(下载安装 webpack，react和react-dom和其他react 依赖包) - 注意安装时间比较慢，请耐心等待
 `# npm i -g create-react-app`
 
-1.1 查看安装版本 `# create-react-app -v`
+查看安装版本 `# create-react-app -v`
 
 2. 新建 react 应用
 
@@ -53,7 +53,7 @@
 
 4. 查看调试页面
 
-浏览器访问 `http://localhost:3000` 
+浏览器访问 `http://localhost:3000`
 
 5. 脚手架命令安装第三方库
 
@@ -64,7 +64,7 @@
 
 ## 自定义配置 webpack
 
-- 弹出配置文件 `# npm run eject` 
+- 弹出配置文件 `# npm run eject`
 - 如果提示出错：请 `git commit` 之后没有提示出错
 - 扩展 package.json 里的 script字段，扩展 npm run 命令
 - 注册码云账号(https://git.oschina.net/) 建立私有项目
@@ -193,4 +193,3 @@ User.update({'user': 'wovert'}, {'$set':{age:26}}, (e,d){
   - Mongodb 字段设计
   - axios 发送异步请求
   - redux 管理所有数据，组件尽量用 antd-mobile，弱化 css
-
