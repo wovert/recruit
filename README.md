@@ -193,3 +193,42 @@ User.update({'user': 'wovert'}, {'$set':{age:26}}, (e,d){
   - Mongodb 字段设计
   - axios 发送异步请求
   - redux 管理所有数据，组件尽量用 antd-mobile，弱化 css
+
+### 流程开发开发
+
+1. 熟悉一个项目的开发流程
+2. 学会模块化、组件化、工程化的开发模式
+3. 掌握使用create-react-app脚手架初始化react项目开发
+4. 学会使用node+express+mongoose+mongodb搭建后台开发
+
+### react插件和第三方库
+
+1. `react-router-dom`开发单页应用
+2. `axios` 与后端进行数据交互
+3. `redux + react-redux + redux-thunk` 管理应用组件状态
+4. `antd-mobile` 组件库构建界面
+5. `mongoose` 操作 `mongodb` 数据库
+6. `express` 搭建后台路由
+7. `socket.io` 实现实时通信
+8. `blueimp-md5` 对密码进行md5加密处理
+9. `js-cookie`操作浏览器端 `cookie` 数据
+
+### npm 常用命令
+
+``` sh
+npm init 初始化当前应用包，生成 package.json
+npm i 根据package.json 下载所有依赖包
+npm i packageName --save 下载某个运行时依赖包
+npm i packageName --save-dev 下载某个开发编译期以来包
+npm i packageName -g 全局下载某个依赖包
+npm i pakageName@version 下载指定版本的某个依赖包
+npm info packageName 查看某个包有远程仓库中的相关信息
+npm rm packageName --save 移除已下载的运行依赖包
+npm rm packageName --save-dev 移除已下载的开发依赖包
+npm list 查看安装的所有的包
+npm help 查看命令详细宝珠
+npm i -g cnpm --registry=https://registry.npm.taobao.org 安装淘宝镜像
+npm config set registry="https://registry.npm.taobao.org"  将淘宝镜像设置为 npm 的默认源
+npm run xx 指向package.json的scripts中配置的命令
+npm root -g 查看厍下载目录
+```
