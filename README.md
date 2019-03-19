@@ -31,17 +31,22 @@
 [create-react-app](https://github.com/facebook/create-react-app) 脚手架生成文件格式
 
 1. 全局安装(下载安装 webpack，react和react-dom和其他react 依赖包) - 注意安装时间比较慢，请耐心等待
-`# npm i -g create-react-app`
 
-查看安装版本 `# create-react-app -v`
+```sh
+# npm i -g create-react-app
+
+查看安装版本
+# create-react-app -v
+```
 
 2. 新建 react 应用
 
-`# create-react-app project01`
+``` sh
+# create-react-app project01
 
-2.1 查看应用
-
-`# cd project01 && ls -l`
+查看应用
+# cd project01 && ls -l
+```
 
 - src 源代码目录
 - public 静态资源目录
@@ -65,8 +70,8 @@
 ## 自定义配置 webpack
 
 - 弹出配置文件 `# npm run eject`
-- 如果提示出错：请 `git commit` 之后没有提示出错
-- 扩展 package.json 里的 script字段，扩展 npm run 命令
+- 如果提示出错：请`git commit` 之后没有提示出错
+- 扩展 **package.json** 里的 script字段，扩展 npm run 命令
 - 注册码云账号(https://git.oschina.net/) 建立私有项目
 
 ## Express + MongoDB
@@ -231,4 +236,90 @@ npm i -g cnpm --registry=https://registry.npm.taobao.org 安装淘宝镜像
 npm config set registry="https://registry.npm.taobao.org"  将淘宝镜像设置为 npm 的默认源
 npm run xx 指向package.json的scripts中配置的命令
 npm root -g 查看厍下载目录
+```
+
+## 应用开发
+
+### 开启项目开发
+
+#### create-react-app 脚手架搭建项目
+
+> react官方提供的用于单间基于react+webapck+es6项目的脚手架
+
+```sh
+全局下载工具
+# npm i -g create-react-app
+
+下载模板项目
+# create-react-app zhipin-client
+
+# cd zhipin
+# vim package.json
+{
+  "name": "zhipin_client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "client": "serve build"
+  }
+}
+
+# npm start
+
+访问 localhsot:3000
+```
+
+#### 编码测试与打包发布项目
+
+1. 编码测试
+
+```sh
+# npm start
+访问：http://localhost:3000
+编码，自动编译打包刷新(`live-reload`)，查看效果
+```
+
+2. 打包发布
+
+```sh
+# npm run build
+
+下载静态服务器包
+# npm i -g serve
+
+运行静态文件服务
+# serve -s build
+访问：http://localhost:5000
+```
+
+#### 前段项目源码目录设计
+
+- **src** 客户端代码目录
+  - **api** 请求接口模块目录
+  - **assets** 公用资源目录
+  - **components** UI组件目录
+  - **containers** 容器组件目录
+  - **redux** 数据状态模块目录
+  - **utils** 工具模块目录
+  - **index.js** 入口文件
+
+#### 引入antd-mobile
+
+```sh
+下载组件库包
+# npm i antd-mobile --save
+
+页面处理 index.html
+
 ```
