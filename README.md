@@ -440,6 +440,122 @@ const fileLoaderMatcher = function (rule) {
 
 路由组件
 # vim containers/register/register.jsx
+```
 
+register.js
 
+```js
+/* 
+* 注册路由组件
+*/
+import React, { Component  } from "react"
+export default class Register extends Component {
+  render () {
+    return (
+      <div>
+          Register
+      </div>
+    )
+  }
+}
+```
+
+index.js
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+// Switch 路由切换组件
+import {HashRouter, Route, Switch} from 'react-router-dom'
+import Register from './containers/register/register'
+import Login from './containers/login/login'
+import Index from './containers/index/index'
+
+ReactDOM.render((
+  <HashRouter>
+    <Switch>
+      <Route path='/register' component={Register}></Route>
+      <Route path='/login' component={Login}></Route>
+      <Route component={Index}></Route>{/* 默认组件：其他组件必须经过Index路由组件 */}
+    </Switch>
+  </HashRouter>
+), document.getElementById('root'))
+```
+
+#### 引入redux
+
+```sh
+下载相关依赖包: redux-thunk 异步包
+# npm i redux@3.7.2 react-redux redux-thunk --save
+# npm i redux-devtools-extension --save-dev
+注意：redux不能下载最新版本
+
+```
+
+reducers: redux/{store.js, reducers.js, actions.js, action-types.js}
+
+store.js
+
+```js
+/** 
+ * redux 最核心的管理对象模块
+ */
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import reducers from './reducers'
+
+// 向外暴露 store 对象
+export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
+```
+
+reducers.js
+
+```js
+/** 
+ * 包含多个 reducer 函数: 根据老的 state 和指定的 action 返回新的 state
+ */
+
+// 合并reducer
+import {combineReducers} from 'redux'
+
+function xx(state=0, action) {
+  return state
+}
+
+function yy(state=0, action) {
+  return state
+}
+
+export default combineReducers({
+  xx,
+  yy
+}) // 向外暴露的状态结构：{xx: 0, yy: 0}
+```
+
+index.js
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+// Switch 路由切换组件
+import {HashRouter, Route, Switch} from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+import store from './redux/store'
+import Register from './containers/register/register'
+import Login from './containers/login/login'
+import Index from './containers/index/index'
+
+ReactDOM.render((
+  <Provider store={store}>
+    <HashRouter>
+      <Switch>
+        <Route path='/register' component={Register}></Route>
+        <Route path='/login' component={Login}></Route>
+        <Route component={Index}></Route>{/* 默认组件：其他组件必须经过Index路由组件 */}
+      </Switch>
+    </HashRouter>
+  </Provider>
+), document.getElementById('root'))
 ```
