@@ -221,21 +221,35 @@ User.update({'user': 'wovert'}, {'$set':{age:26}}, (e,d){
 ### npm 常用命令
 
 ``` sh
-npm init 初始化当前应用包，生成 package.json
-npm i 根据package.json 下载所有依赖包
-npm i packageName --save 下载某个运行时依赖包
-npm i packageName --save-dev 下载某个开发编译期以来包
-npm i packageName -g 全局下载某个依赖包
-npm i pakageName@version 下载指定版本的某个依赖包
-npm info packageName 查看某个包有远程仓库中的相关信息
-npm rm packageName --save 移除已下载的运行依赖包
-npm rm packageName --save-dev 移除已下载的开发依赖包
-npm list 查看安装的所有的包
-npm help 查看命令详细宝珠
-npm i -g cnpm --registry=https://registry.npm.taobao.org 安装淘宝镜像
-npm config set registry="https://registry.npm.taobao.org"  将淘宝镜像设置为 npm 的默认源
-npm run xx 指向package.json的scripts中配置的命令
-npm root -g 查看厍下载目录
+# npm init 初始化当前应用包，生成 package.json
+# npm i 根据package.json 下载所有依赖包
+# npm i packageName --save 下载某个运行时依赖包
+# npm i packageName --save-dev 下载某个开发编译期以来包
+# npm i packageName -g 全局下载某个依赖包
+# npm i pakageName@version 下载指定版本的某个依赖包
+# npm info packageName 查看某个包有远程仓库中的相关信息
+# npm rm packageName --save 移除已下载的运行依赖包
+# npm rm packageName --save-dev 移除已下载的开发依赖包
+# npm list 查看安装的所有的包
+# npm help 查看命令详细宝珠
+# npm i -g cnpm --registry=https://registry.npm.taobao.org 安装淘宝镜像
+# npm config set registry="https://registry.npm.taobao.org"  将淘宝镜像设置为 npm 的默认源
+# npm run xx 指向package.json的scripts中配置的命令
+# npm root -g 查看厍下载目录
+```
+
+### git 常用基本命令
+
+```sh
+# git config --global user.name "username" // 配置用户名
+# git config --global user.password "xx@gmail.com" // 配置邮箱
+# git init // 初始化生成一个本地仓库
+# git clone url // 将远程仓库克隆下载到本地
+# git add * // 添加到暂存区
+# git commit –m “message” // 提交到本地仓库
+# git remote add origin url // 关联到远程仓库
+# git push origin master // push 到远程
+# git pull origin master // 从远程 pull 更新
 ```
 
 ## 应用开发
@@ -353,3 +367,79 @@ npm root -g 查看厍下载目录
 
 [移动端点击延迟0.3问题](https://www.cnblogs.com/chaojidan/p/4517895.html)
 
+#### 组件的按需打包
+
+```sh
+依赖模块
+# npm i babel-plugin-import react-app-rewired --save-dev
+
+在根目录下定义加载配置的JS模块
+# vim config-overrides.js
+  const {injectBabelPlugin} = require('react-app-rewired')
+  module.exports = function override(config, env) {
+    config = injectBabelPlugin(['import', {
+      libraryName: 'antd-mobile',
+      style: 'css'
+    }], config)
+    return config
+  }
+
+修改配置
+# vim package.json
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "client": "serve build"
+  }
+```
+
+#### 应用中使用 antd 组件
+
+index.js文件写入一下代码
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Button} from 'antd-mobile'
+
+ReactDOM.render(
+  <Button type='primary'>学习React</Button>,
+  document.getElementById('root')
+)
+```
+
+The "injectBabelPlugin" helper has been deprecated as of v2.0. You can use customize-cra plugins in replacement - https://github.com/arackaf/customize-cra#available-plugins 
+
+原因： `react-scripts` 升级到 `2.1.2` 以后破坏了 `react-app-rewired`;然后 `react-app-rewired` 升级到 `2.x` 以后直接干掉了所有 `helpers`
+
+解决方法：把`react-app-rewired` 进行降级后可以了
+
+`$ yarn add react-app-rewired@2.0.2-next.0` 或者
+`$ npm i react-app-rewired@2.0.2-next.0 --save-dev`
+
+#### 自定义主题
+
+1. 主题的背景颜色从blue变为green
+2. 下载依赖模块 `npm i less-loader less@2.7.3 --save-dev`
+3. 配置：**config-overrides.js**
+
+```js
+const {injectBabelPlugin, getLoader} = require('react-app-rewired')
+const fileLoaderMatcher = function (rule) {
+  return rule.loader && rule.loader.indexOf('file-loader') !== -1
+}
+```
+
+#### 引入路由
+
+```sh
+下载路由包
+# npm i react-router-dom --save
+
+路由组件
+# vim containers/register/register.jsx
+
+
+```
