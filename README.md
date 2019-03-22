@@ -559,3 +559,59 @@ ReactDOM.render((
   </Provider>
 ), document.getElementById('root'))
 ```
+
+### 搭建后台应用
+
+#### 创建Node+Express应用 —— zhipin_server
+
+#### 后台编码并测试
+
+1. 需求-提供一个用户注册的借口
+
+1.1 path为 post: `/register`
+
+1.2 接受 `username`和`password`参数
+
+1.3 admin是已注册用户
+
+1.4 注册成功返回：`{code:0, data: {_id: '1', username:'123', password:'123'}}`
+
+1.5 注册失败返回：`{code:1, msg: '此用户已存在', data: {}}`
+
+#### 后台应用自动运行
+
+1. 问题：每次修改后台应用代码，需要重新运行命令修改才生效
+2. 解决：使用**nodemon**包
+3. 下载：`npm i nodemon --savedev`
+4. 配置：`"start": "nodemon ./bin/www"`
+5. 测试：修改后台任何代码，会自动重新运行最新的代码
+
+### 使用mongoose 操作数据库
+
+#### 1.下载依赖包
+
+`npm i mongoose blueimp-md5 --save`
+
+#### 2. db/db_test.js
+
+```js
+使用mongoose 操作 mongodb 的测试文件
+
+1. 连接数据库
+  1.1 引入 mongoose
+  1.2 连接指定数据库（URL 只有数据库变化的）
+  1.3 获取连接对象
+  1.4 绑定链接完成的监听（用来提示连接成功）
+
+2. 得到对应特定集合的 Model
+  2.1 定义 Schema(描述文档结构)
+  2.2 定义 Model(与集合对应，可以操作集合)
+
+3. 通过 Model 或其实例对象集合数据进行 CRUD 操作
+  3.1 通过 Model 实例的 save() 添加数据
+  3.2 通过 Model 的 find()/findOne() 查询多个或一个数据
+  3.3 通过 Model 的 findByIdAndUpdate() 更新某个数据
+  3.4 通过 Model 的 remove() 删除匹配的数据
+
+const md5 = require('blueimp-md5')
+```
