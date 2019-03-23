@@ -644,3 +644,68 @@ const md5 = require('blueimp-md5')
 DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
 
 解决方案：`{useNewUrlParser:true}`
+
+### 注册/登录前台处理
+
+#### 下载相关依赖包
+
+`npm i axios --save`
+
+#### 封装 ajax 请求代码
+
+1. `api/http.js`
+
+```js
+import axios from 'axios'
+
+export default function ajax (url = '', data = {}, type = 'GET') {
+  if (type === 'GET') {
+    let dataStr = ''
+    Object.keys(data).forEach( key => {
+      dataStr += key + '=' + data[key] + '&'
+    })
+    if (dataStr !== '') {
+      dataStr = dataStr.substring(0, dataStr.lastIndexOf('&'))
+      url = url + '?' + dataStr
+    }
+    return axios.get(ur)
+  } else {
+    return axios.post(url, data)
+  }
+}
+
+function get (url = '', data = {}) {
+  let dataStr = ''
+  Object.keys(data).forEach( key => {
+    dataStr += key + '=' + data[key] + '&'
+  })
+  if (dataStr !== '') {
+    dataStr = dataStr.substring(0, dataStr.lastIndexOf('&'))
+    url = url + '?' + dataStr
+  }
+  return axios.get(ur)
+}
+
+function post (url = '', data = {}) {
+  return axios.post(url, data)
+}
+
+exports.post = post
+exports.get = get
+```
+
+2. `api/index.js`
+
+```js
+import {get, post} from './http'
+
+// 请求注册
+export const regRegister = (user) => post('/register', user)
+
+// 请求登录
+export const regLogin = (user) => post('/login', user)
+```
+
+3. 配置异步请求的代理：**package.json**
+
+`"proxy": "http://localhost:4000"`
