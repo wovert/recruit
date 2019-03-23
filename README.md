@@ -615,3 +615,32 @@ ReactDOM.render((
 
 const md5 = require('blueimp-md5')
 ```
+
+### 注册/登录后台处理
+
+#### 数据库数据操作模块： db/models.js
+
+包含n个能操作 mongodb 数据库集合的 model 的模块
+
+```js
+
+1. 连接数据库
+  1.1. 引入 mongoose
+  1.2. 连接指定数据库（URL 只有数据库是变化的）
+  1.3. 获取链接对象
+  1.4. 绑定连接完成的监听（用来提示连接成功）
+2. 定义出对应待定集合的 Model 并向外暴露
+  2.1. 定义 Schema （描述文档结构）
+  2.2. 定义 Model (与集合对应，可以操作集合)
+  2.3. 向外暴露 Model
+
+
+1. 使用 mongoose 操作数据库
+2. 注册/登录后台处理：路由/数据库操作
+3. 注册/登录前台处理：ajax/redux/component
+4. 实现 user 信息完善功能
+```
+
+DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+
+解决方案：`{useNewUrlParser:true}`
