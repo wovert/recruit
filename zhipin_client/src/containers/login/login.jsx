@@ -10,18 +10,20 @@ import {
   WhiteSpace,
   Button
 } from 'antd-mobile'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+
+import {login} from '../../redux/actions'
 import Logo from '../../components/logo/logo'
 
-const ListItem = List.Item
-
-export default class Login extends Component {
+class Login extends Component {
   // 表单收集数据
   state = {
     username: '', // 用户名
     password: '', // 密码
   }
   login = () => {
-    console.log(this.state)
+    this.props.login(this.state)
   }
 
   toRegister = () => {
@@ -36,12 +38,19 @@ export default class Login extends Component {
     })
   }
   render () {
+    const {msg, redirectTo} = this.props.user
+
+    // 如果有值，就重定向
+    if (redirectTo) {
+      return <Redirect to={redirectTo}/>
+    }
     return (
       <div>
         <NavBar>供&nbsp;求&nbsp;直&nbsp;聘</NavBar>
         <Logo></Logo>
         <WingBlank>
           <List>
+            {msg?<div className="error-msg">{msg}</div> : null}
             <WhiteSpace/>
             <InputItem 
               placeholder="请输入用户名"
@@ -60,3 +69,11 @@ export default class Login extends Component {
     )
   }
 }
+
+// 包装成容器组件
+export default connect(
+  state => ({
+    user: state.user
+  }),
+  {login}
+)(Login)

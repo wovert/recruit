@@ -1,4 +1,4 @@
-import {get, post} from './http'
+import {post} from './http'
 
 // 注册接口
 export const userRegister = (user) => post('/register', user)

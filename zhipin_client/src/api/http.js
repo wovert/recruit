@@ -28,5 +28,7 @@ function post (url = '', data = {}) {
   return axios.post(url, data)
 }
 
-exports.post = post
-exports.get = get
+export {
+  post,
+  get
+}

@@ -4,16 +4,36 @@
 
 // 合并reducer
 import {combineReducers} from 'redux'
+import {
+  AUTH_SUCCESS,
+  ERROR_MSG
+} from './action-types'
 
-function xx(state=0, action) {
-  return state
+const initUser = {
+  username: '', // 用户
+  type: '', // 用户类型 dashen/laoban
+  msg: '', // 错误提示信息
+  redirectTo: '' // 需要自动重定向的路由路径
 }
 
-function yy(state=0, action) {
-  return state
+// user状态的reducer
+function user (state = initUser, action) {
+  switch (action.type) {
+    case AUTH_SUCCESS: // data是user
+      return {
+        ...action.data,
+        redirectTo: '/'
+      }
+    case ERROR_MSG: // data是msg
+      return {
+        ...state,
+        msg: action.data
+      }
+    default:
+      return state
+  }
 }
 
 export default combineReducers({
-  xx,
-  yy
-}) // 向外暴露的状态结构：{xx: 0, yy: 0}
+  user
+}) // 向外暴露的状态结构：{user: {}}

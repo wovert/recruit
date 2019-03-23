@@ -44,7 +44,7 @@ router.post('/register', (req, res) => {
 
           // 返回成功响应数据 user
           res.send({
-            code: 1,
+            code: 0,
             data: {
               username,
               type,
