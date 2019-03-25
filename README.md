@@ -709,3 +709,11 @@ export const regLogin = (user) => post('/login', user)
 3. 配置异步请求的代理：**package.json**
 
 `"proxy": "http://localhost:4000"`
+
+#### 实现user信息完善功能
+
+```js
+下载相关依赖包
+$ npm i js-cookie --save
+```
+
