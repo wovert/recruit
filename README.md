@@ -715,5 +715,8 @@ export const regLogin = (user) => post('/login', user)
 ```js
 下载相关依赖包
 $ npm i js-cookie --save
+
+组件接受事件
+$ npm i --save prop-types
 ```
 
