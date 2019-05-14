@@ -42,7 +42,7 @@ class Login extends Component {
 
     // 如果有值，就重定向
     if (redirectTo) {
-      return <Redirect to={redirectTo}/>
+      return <Redirect to={redirectTo} />
     }
     return (
       <div>
@@ -50,18 +50,31 @@ class Login extends Component {
         <Logo></Logo>
         <WingBlank>
           <List>
-            {msg?<div className="error-msg">{msg}</div> : null}
+            {msg ? <div className="error-msg">{msg}</div> : null}
             <WhiteSpace/>
             <InputItem 
               placeholder="请输入用户名"
-              onChange={val => {this.handleChange('username', val)}}
-            >用户名</InputItem>
-            <WhiteSpace/>            <InputItem 
+              onChange={val => {
+                this.handleChange('username', val)
+              }}
+            >
+              用户名
+            </InputItem>
+            <WhiteSpace/>
+            <InputItem 
               placeholder="请输入密码"
               type="password"
-              onChange={val => {this.handleChange('password', val)}}
-            >密码</InputItem>
-            <Button type='primary' onClick={this.login}>登&nbsp;录</Button>
+              onChange={val => {
+                this.handleChange('password', val)
+              }}
+            >
+              密码
+            </InputItem>
+            <Button
+              type='primary'
+              onClick={this.login}>
+              登&nbsp;录
+            </Button>
             <Button onClick={this.toRegister}>还没有账户</Button>
           </List>
         </WingBlank>

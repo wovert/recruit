@@ -1,5 +1,5 @@
 {
-  "name": "zhipin_server",
+  "name": "server",
   "version": "0.0.0",
   "private": true,
   "scripts": {

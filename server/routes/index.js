@@ -23,36 +23,34 @@ router.post('/register', (req, res) => {
     if (err) {
       console.log('注册用户失败：', err)
     } else {
-      // 有user
       if (user) {
         res.send({
           code: 1,
           msg: '此用户已存在'          
         })
-      } else {
-        // 不存在
-        new UserModel({username, password: md5(password), type}).save((err, user) => {
-
-          // 生成一个cookie（userid: user._id）并交给浏览器保存
-          res.cookie(
-            'userid',
-            user._id,
-            {
-              maxAge: 1000 * 60 * 60 * 24 * 7 // 持久化 cookie, 浏览器会保存在本地文件
-            }
-          )
-
-          // 返回成功响应数据 user
-          res.send({
-            code: 0,
-            data: {
-              username,
-              type,
-              _id: user._id
-            }
-          })
-        })
+        return
       }
+      // 不存在
+      new UserModel({username, password: md5(password), type}).save((err, user) => {
+        // 生成一个cookie（userid: user._id）并交给浏览器保存
+        res.cookie(
+          'userid',
+          user._id,
+          {
+            maxAge: 1000 * 60 * 60 * 24 * 7 // 持久化 cookie, 浏览器会保存在本地文件
+          }
+        )
+
+        // 返回成功响应数据 user
+        res.send({
+          code: 0,
+          data: {
+            username,
+            type,
+            _id: user._id
+          }
+        })
+      })
     }
   })
 })
